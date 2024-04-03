@@ -25,6 +25,7 @@ buttons.forEach(button => {
     });
 });
 
+// the Bot Choice 
 const getComputerChoice = () => ['rock', 'paper', 'scissors'][Math.floor(Math.random() * 3)];
 
 function playRound(playerSelection, computerSelection) {

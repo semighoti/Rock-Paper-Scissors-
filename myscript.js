@@ -1,37 +1,34 @@
-// the Bot choise
-const getBotChoice = () => ["rock", "paper", `scissors`][Math.floor(Math.random() * 3)];
-
-function playingRound(playerPlaying,botPlaying) {
-  if (playerPlaying === botPlaying) {
-    return "Tie!"
-  } else if (
-    (playerPlaying === "rock" && botPlaying === `scissors`) ||
-    (playerPlaying === "scissors" && botPlaying === `paper`) ||
-    (playerPlaying === "paper" && botPlaying === `rock`) ||
-  ) {
-    return "the Player wins!";
-  } else {
-    return "the Bot win!";
-  }
-}
-
-// the player choice
-const buttons = document.querySelectorAll("button");
-let playerScore = 0;
-let botScore = 0;
-buttons.forEach(button => {
-  button.addEventListener(`click`, () => {
-    const playerPlaying = button.textContent;
-    const botPlaying = getBotChoice;
-    const result = playingRound(playerPlaying,botPlaying);
-    if (result === "the Player wins!" ) {
+// const startGame = document.getElementById(`start`);
+document.getElementById(`start`).addEventListener(`click`, () => {
+  const playerChoice = prompt(`Read the rule and pick you move`,``);
+  let playerScore = 0;
+  let botScore = 0;
+  const result = playRound(playerChoice, botChoice());
+    if (result === `The player win!`) {
       playerScore += 1;
-    } else if (result === "the Bot win!" ){
+      console.log (result);
+    } else if (result === `The computer win!`) {
       botScore +=1;
+      // console.log (result);
     }
-    const resultDev = document.createElement(`div`);
-    resultDev.textContent = `${result}, player score: ${playerScore}, computer score: ${botScore}.`
-  })
-
+  const showResult = document.createElement(`ul`);
+  showResult.textContent = `${result}. Player score: ${playerScore}; Computer score: ${botScore}.`;
+  document.body.appendChild(showResult);
 });
 
+const botChoice = () => [`rock`, `paper`, `scissors`][Math.floor(Math.random() * 3)];
+
+
+function playRound(playerChoice, botChoice){
+  if (playerChoice === botChoice){
+    return `Tie!`
+  } else if (
+    (playerChoice === `rock` && botChoice === `scissors`) ||
+    (playerChoice === `scissors` && botChoice === `paper`) ||
+    (playerChoice === `paper` && botChoice === `rock`)
+  ) {
+    return `The player win!`;
+  } else {
+    return `The computer win!`;
+  };
+};
