@@ -1,8 +1,8 @@
 // Add event listeners to the buttons
-const buttons = document.querySelectorAll('button');
+// const buttons = document.querySelectorAll('button');
 let playerScore = 0;
 let computerScore = 0;
-buttons.forEach(button => {
+document.querySelectorAll('button').forEach(button => {
     button.addEventListener('click', () => {
         const playerSelection = button.textContent;
         const computerSelection = getComputerChoice();
@@ -12,10 +12,10 @@ buttons.forEach(button => {
         } else if (result === 'Computer wins!') {
             computerScore += 1;
         }
-        const resultDiv = document.createElement('div');
+        const resultDiv = document.createElement('ul');
         resultDiv.textContent = `${result}, player score: ${playerScore}, computer score: ${computerScore}`;
         document.body.appendChild(resultDiv);
-        const theWinner = document.createElement('div');
+        const theWinner = document.createElement('h3');
         if (playerScore === 5) {
             theWinner.textContent = 'The winner is player!';
         } else if (computerScore === 5) {
